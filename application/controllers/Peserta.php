@@ -31,6 +31,31 @@ class Peserta extends CI_Controller {
 		$this->load->view('form_tambah_peserta');
 	}
 	
+	public function hapus($id = null){
+		if($id==null){
+			$this->pesan('Maaf paramater id tidak ditemukan atau kosong','peserta');
+		}
+		else{
+			$hapus = $this->DbModel->hapus('peserta',$id);
+			if($hapus){
+				$this->pesan('sukses hapus data peserta','peserta');
+			}
+			else{
+				$this->pesan('gagal hapus data peserta','peserta');
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	private function pesan($pesan,$landing){
 		echo '
 			<script>

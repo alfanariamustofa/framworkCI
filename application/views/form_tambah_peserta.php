@@ -18,8 +18,13 @@
 			<input type="text" name="telepon" required><br>
 			<label>Bidang Konsentrasi</label><br>
 			<select name="id_bidang" required>
-				<option></option>
-			</select><br>
+<?php
+$bidang = $this->db->get('bidang')->result();
+foreach($bidang as $row){
+	echo '<option value="'.$row->id_bidang.'">'.$row->bidang_konsentarasi.'</option>';
+}
+?>
+			</select><br><br>
 			<input type="submit" value="Simpan">
 		</form>
 	</body>
