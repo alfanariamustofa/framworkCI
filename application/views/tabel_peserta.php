@@ -4,7 +4,7 @@
 	</head>
 	<body>
 		<h2>Daftar Peserta Pelatihan</h2>
-		<button>Tambah Peserta</button>
+		<button onclick="tombolAksi('tambah')">Tambah Peserta</button>
 		<table>
 			<thead>
 				<tr>
@@ -27,8 +27,8 @@
 					<td>'.$row->telepon.'</td>
 					<td>'.$row->id_bidang.'</td>
 					<td>
-						<button>Ubah</button>
-						<button>Hapus</button>
+						<button onclick="tombolUbah('.$row->id_peserta.')">Ubah</button>
+						<button onclick="tombolHapus('.$row->id_peserta.')">Hapus</button>
 					</td>
 				</tr>
 			';
@@ -36,5 +36,51 @@
 	?>
 			</tbody>
 		</table>
+		
+<script>
+
+function tombolAksi(halaman){
+	window.location = "<?php echo base_url();?>"+"peserta/"+halaman;
+}
+
+function tombolHapus(id){
+	if(confirm("Apakah anda yakin ingin menghapus data dengan id "+id)){
+		window.location = "<?php echo base_url();?>"+"peserta/hapus/"+id;
+	}
+}
+
+function tombalUbah(id){
+	window.location = "<?php echo base_url();?>"+"peserta/ubah/"+id;
+}
+
+</script>
+		
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	</body>
 </html>
