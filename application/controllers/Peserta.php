@@ -5,19 +5,24 @@ class Peserta extends CI_Controller {
 
 	public function index()
 	{
-		$data['peserta'] = $this->DbModel->daftar('peserta',null);
+		$data['peserta'] = $this->DbModel->daftar('peserta,bidang',"peserta.id_bidang=bidang.id_bidang");
 		$this->load->view('tabel_peserta',$data);
 	}
 	
-	public function simpan(){
+	public function simpan($id=null){
 		$set = array(
 				"id_bidang" 	=> $this->input->post('id_bidang'),
 				"nama_peserta" 	=> $this->input->post('nama_peserta'),
 				"program_studi"	=> $this->input->post('program_studi'),
 				"telepon"		=> $this->input->post('telepon')
 			);
-
-		$insert = $this->DbModel->simpan('peserta',$set);
+			
+		if($id==null){
+			$insert = $this->DbModel->simpan('peserta',$set);
+		}
+		else{
+			$insert = $this->DbModel->update('peserta',$set,$id);
+		}
 		
 		if($insert){
 			$this->pesan('sukses simpan data peserta','peserta');
@@ -29,6 +34,22 @@ class Peserta extends CI_Controller {
 	
 	public function tambah(){
 		$this->load->view('form_tambah_peserta');
+	}
+	
+	public function ubah($id=null){
+		if($id==null){
+			$this->pesan('parameter id tidak ditemukan','peserta');
+		}
+		else{
+			$peserta = $this->db->where("id_peserta=$id")->get('peserta')->result();
+			if(count($peserta)>0){
+				$data['data'] = $peserta[0];
+				$this->load->view('form_tambah_peserta',$data);
+			}
+			else{
+				$this->pesan('data peserta dengan id '.$id.' tidak ditemukan','peserta');
+			}
+		}
 	}
 	
 	public function hapus($id = null){

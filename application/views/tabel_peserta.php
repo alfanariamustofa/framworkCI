@@ -25,7 +25,7 @@
 					<td>'.$row->nama_peserta.'</td>
 					<td>'.$row->program_studi.'</td>
 					<td>'.$row->telepon.'</td>
-					<td>'.$row->id_bidang.'</td>
+					<td>'.$row->bidang_konsentarasi.'</td>
 					<td>
 						<button onclick="tombolUbah('.$row->id_peserta.')">Ubah</button>
 						<button onclick="tombolHapus('.$row->id_peserta.')">Hapus</button>
@@ -49,7 +49,7 @@ function tombolHapus(id){
 	}
 }
 
-function tombalUbah(id){
+function tombolUbah(id){
 	window.location = "<?php echo base_url();?>"+"peserta/ubah/"+id;
 }
 
