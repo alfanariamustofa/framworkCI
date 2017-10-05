@@ -6,7 +6,7 @@ class Peserta extends CI_Controller {
 	public function index()
 	{
 		$data['peserta'] = $this->DbModel->daftar('peserta,bidang',"peserta.id_bidang=bidang.id_bidang");
-		$this->load->view('tabel_peserta',$data);
+		$this->load->view('master-template',$data);
 	}
 	
 	public function simpan($id=null){
@@ -65,6 +65,10 @@ class Peserta extends CI_Controller {
 				$this->pesan('gagal hapus data peserta','peserta');
 			}
 		}
+	}
+	
+	public function bootstrap(){
+		$this->load->view('master-template');
 	}
 	
 	
